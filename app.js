@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   res.locals.currPath = req.path;
   next();
 });
-
+//start
 main()
   .then(() => {
     console.log(`connected server on ${url}`);
