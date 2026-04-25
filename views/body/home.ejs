@@ -1,2 +1,155 @@
-<% layout("/layouts/boilerplate.ejs") %>
-<body></body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Money Mate | Master Your Wealth</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="/" class="logo">
+        <img src="\img\logo.png" alt="MoneyMate Logo" />
+        <span>Money Mate</span>
+      </a>
+      <div class="nav-buttons">
+        <a href="/login" class="btn login-btn">Login</a>
+        <a href="/signup" class="btn signup-btn">Sign Up</a>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="hero-content">
+        <h1>
+          Take Control of Your <span class="highlight">Financial Future</span>
+        </h1>
+        <p>
+          Money Mate is your ultimate personal finance companion. Whether you
+          want to track daily expenses, set smart budgets, or achieve big
+          financial goals, we make it simple, secure, and beautiful. Start
+          making your money work for you today!
+        </p>
+        <div class="hero-actions">
+          <a href="/signup" class="btn main-cta">Get Started Now</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="\img\main1_image.jpeg" alt="Money Mate Dashboard Aesthetic" />
+      </div>
+    </section>
+    <section class="features-section">
+      <h2>Why <span class="highlight">Money Mate?</span></h2>
+      <p class="section-subtitle">
+        Everything you need to manage your wealth seamlessly.
+      </p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">📊</div>
+          <h3>Smart Expense Tracking</h3>
+          <p>
+            Log your daily spending effortlessly. Categorize transactions and
+            see exactly where your money goes with deep MongoDB integration.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🎯</div>
+          <h3>Goal Setting</h3>
+          <p>
+            Planning for a new gaming laptop or a vacation? Set custom saving
+            goals and track your progress in real-time.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📈</div>
+          <h3>Detailed Insights</h3>
+          <p>
+            Get beautiful, easy-to-understand charts and reports that break down
+            your financial health month over month.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h2>Your Path to <span class="highlight">Financial Freedom</span></h2>
+
+      <div class="steps-container">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Sign Up</h3>
+          <p>Create your secure account in less than 2 minutes.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Connect & Track</h3>
+          <p>
+            Add your initial balance and start logging your daily expenses with
+            our intuitive UI.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Grow Wealth</h3>
+          <p>
+            Analyze your patterns, optimize your budget, and reach your goals
+            faster.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="team-section">
+      <h2>Meet The <span class="highlight">Minds</span> Behind Money Mate</h2>
+      <p class="team-desc">
+        Dedicated to building the best financial tools for you.
+      </p>
+
+      <div class="team-grid">
+        <div class="team-card leader-card">
+          <div class="img-placeholder">
+            <img src="\img\nikunj_image.jpeg" alt="Nikunj Wakode" />
+          </div>
+          <h3>Nikunj Wakode</h3>
+          <p class="role">Team Leader</p>
+        </div>
+
+        <div class="team-card">
+          <div class="img-placeholder">
+            <img src="\img\john_image.jpeg" alt="John Mathew" />
+          </div>
+          <h3>John Mathew</h3>
+          <p class="role">Team Member</p>
+        </div>
+
+        <div class="team-card">
+          <div class="img-placeholder">
+            <img src="\img\harshita_image.jpeg" alt="Harshita Patel" />
+          </div>
+          <h3>Harshita Patel</h3>
+          <p class="role">Team Member</p>
+        </div>
+
+        <div class="team-card">
+          <div class="img-placeholder">
+            <img src="\img\divyam_image.jpeg" alt="Divyam Yadav" />
+          </div>
+          <h3>Divyam Yadav</h3>
+          <p class="role">Team Member</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        &copy; <%= new Date().getFullYear() %> Money Mate. Built with ❤️ by
+        Nikunj, John, Harshita, and Divyam.
+      </p>
+    </footer>
+  </body>
+</html>
