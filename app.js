@@ -5,6 +5,7 @@ const ejsMate = require("ejs-mate");
 const port = 8080;
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+const ExpressError = require("./utils/ExpressError");
 const url = "mongodb://localhost:27017/DevSquad";
 
 app.set("view engine", "ejs");
@@ -30,6 +31,15 @@ async function main() {
 //home route
 app.get("/", (req, res) => {
   res.render("body/home.ejs");
+});
+
+app.all("/*splat", (req, res, next) => {
+  next(new ExpressError(404, "Page Not Found"));
+});
+
+app.use((err, req, res, next) => {
+  let { statusCode = 500, message = "Something Gone Wrong" } = err;
+  res.status(statusCode).render("error.ejs", { message });
 });
 
 app.listen(port, () => {
