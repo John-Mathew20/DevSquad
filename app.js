@@ -32,7 +32,7 @@ async function main() {
 
 //home route
 app.get("/", (req, res) => {
-  res.render("body/home.ejs");
+  res.render("home.ejs");
 });
 
 //login route
