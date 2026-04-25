@@ -1,20 +1,25 @@
-<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/"
-      ><i class="fa-solid fa-money-bill-1-wave icon"></i>MoneyMate</a
-    >
-    <button class="navbar-toggler" type="button">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar navbar-expand-lg sticky-top" style="background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid #1e293b;">
+  <div class="container-fluid px-4">
+    
+    <a class="navbar-brand d-flex align-items-center" href="/" style="text-decoration: none;">
+      <img src="\img\logo.png" alt="MoneyMate Logo" style="height: 40px; width: 40px; border-radius: 50%; object-fit: contain; margin-right: 12px;">
+      <span style="font-weight: 700; color: #fff; font-size: 1.5rem; letter-spacing: 1px;">MoneyMate</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" style="border-color: #334155;">
+      <span class="navbar-toggler-icon" style="filter: invert(1);"></span> </button>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav right ms-5">
-        <button class="btn btn-outline-primary btn-sm">
-          <a class="nav-link" href="/login">Login</a>
-        </button>
-        <button class="btn btn-outline-success btn-sm ms-3">
-          <a class="nav-link" href="/signup">SignUp</a>
-        </button>
+      <div class="navbar-nav ms-auto align-items-center"> <% if (typeof currPath !== 'undefined' && currPath !== '/login') { %>
+          <a class="nav-link btn login-btn mx-2" href="/login" style="color: #e2e8f0; font-weight: 600;">Login</a>
+        <% } %>
+
+        <% if (typeof currPath !== 'undefined' && currPath !== '/signup') { %>
+          <a class="nav-link btn signup-btn mx-2 px-4" href="/signup" style="background-color: #10b981; color: #000; font-weight: 600; border-radius: 8px;">SignUp</a>
+        <% } %>
+
       </div>
     </div>
+
   </div>
 </nav>

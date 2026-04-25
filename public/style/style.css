@@ -8,14 +8,14 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Tumhara purana Flexbox logic, with Dark Theme */
-body {
-  background-color: #0f172a; /* Deep aesthetic dark blue */
-  color: #f8fafc;
+body,
+html {
+  background-color: #0f172a !important; /* !important lagana zaroori hai */
+  color: #f8fafc !important;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Changed from height to min-height for better scrolling */
+  min-height: 100vh;
 }
 
 .container {
@@ -55,11 +55,29 @@ body {
   border-bottom: 1px solid #1e293b;
 }
 
+/* NAVBAR LOGO STYLING */
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Logo aur text ke beech ka space */
   font-size: 1.8rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: 1px;
+  text-decoration: none; /* Link ki underline hatane ke liye */
+}
+
+.logo img {
+  height: 40px; /* Logo ki height control karne ke liye */
+  width: 40px;
+  object-fit: contain;
+  border-radius: 50%; /* Agar background remove nahi kiya, toh usko gol shape de dega */
+}
+
+/* Hover effect for the logo */
+.logo:hover span {
+  color: #10b981;
+  transition: color 0.3s ease;
 }
 
 .nav-link {
@@ -386,4 +404,69 @@ body {
 
 .step p {
   color: #94a3b8;
+}
+
+/* =========================================
+   AUTHENTICATION FORMS (LOGIN / SIGNUP)
+========================================= */
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* Keeps it perfectly centered vertically */
+  padding: 40px 20px;
+}
+
+.auth-card {
+  background: #1e293b; /* Slightly lighter than body background */
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px; /* Keeps the form from getting too wide on PC */
+  border: 1px solid #334155;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.auth-subtitle {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.auth-label {
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+/* Overriding Bootstrap Input Styles for Dark Theme */
+.custom-input {
+  background-color: #0f172a !important; /* Dark input background */
+  border: 1px solid #334155 !important;
+  color: #f8fafc !important; /* White text inside input */
+  padding: 12px 15px;
+  border-radius: 8px;
+}
+
+.custom-input::placeholder {
+  color: #64748b;
+  opacity: 0.8;
+}
+
+/* Green glow when you click on the input box */
+.custom-input:focus {
+  background-color: #0f172a !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 0.25rem rgba(16, 185, 129, 0.25) !important;
+  color: #f8fafc !important;
+}
+
+/* Form Validation Feedback Colors */
+.valid-feedback {
+  color: #10b981 !important; /* Matching emerald green */
+}
+
+/* Extra spacing for the button */
+.w-100 {
+  width: 100%;
+  margin-top: 10px;
 }
