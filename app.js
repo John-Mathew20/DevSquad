@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const ExpressError = require("./utils/ExpressError");
 const url = "mongodb://localhost:27017/DevSquad";
+const wrapAsync = require("./utils/wrapAsync");
+const User = require("./models/user");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -31,6 +33,23 @@ async function main() {
 //home route
 app.get("/", (req, res) => {
   res.render("body/home.ejs");
+});
+
+//login route
+app.get("/login", async (req, res) => {
+  res.render("body/login.ejs");
+});
+
+app.post("/login", async (req, res) => {
+  let { username, password } = req.params;
+  if (username == User.username && password == User.password) {
+    res.send("/body/home.ejs");
+  }
+});
+
+//signup
+app.get("/signup", async (req, res) => {
+  res.render("body/signup.ejs");
 });
 
 app.all("/*splat", (req, res, next) => {

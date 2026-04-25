@@ -1,3 +1,13 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.container {
+  flex: 1;
+}
+
 /* footer */
 .f-info {
   height: 8rem;
@@ -31,4 +41,22 @@
 
 .f-info-links a:hover {
   text-decoration: underline;
+}
+
+.navbar {
+  height: 5rem;
+  background-color: white;
+}
+
+.nav-link {
+  color: #222222 !important;
+}
+
+.icon {
+  color: green;
+}
+
+.right {
+  position: absolute;
+  right: 10px;
 }

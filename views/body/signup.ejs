@@ -1,0 +1,62 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row">
+    <div class="col-8 offset-2 mt-2">
+      <br />
+      <h3>Hey & Welcome Mates!</h3>
+      <form action="/signup" method="post" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input
+            name="user[name]"
+            placeholder="Enter Your FullName here...."
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            name="user[username]"
+            placeholder="Enter Your Username here...."
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            name="user[password]"
+            placeholder="Enter Your Password here...."
+            type="password"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input
+            name="user[number]"
+            class="form-control"
+            type="number"
+            placeholder="Enter Your Salary..."
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <br />
+        <button class="btn btn-dark add-btn">SignUp</button>
+        <br />
+      </form>
+    </div>
+  </div>
+</body>
