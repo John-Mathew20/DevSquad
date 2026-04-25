@@ -1,70 +1,62 @@
-<% layout("/layouts/boilerplate.ejs") %>
-
-<div class="auth-wrapper">
-  <div class="auth-card">
-    <h3 class="text-center">
-      Hey & Welcome <span class="highlight">Mates!</span>
-    </h3>
-    <p class="text-center auth-subtitle mb-4">
-      Start your financial journey today
-    </p>
-
-    <form action="/signup" method="post" novalidate class="needs-validation">
-      <div class="mb-3">
-        <label for="name" class="form-label auth-label">Full Name</label>
-        <input
-          name="user[name]"
-          placeholder="Enter Your FullName here...."
-          type="text"
-          class="form-control custom-input"
-          required
-        />
-        <div class="valid-feedback">Looks Great!</div>
-        <div class="invalid-feedback">Something is Off !?</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="username" class="form-label auth-label">Username</label>
-        <input
-          name="user[username]"
-          placeholder="Choose a Username...."
-          type="text"
-          class="form-control custom-input"
-          required
-        />
-        <div class="valid-feedback">Looks Great!</div>
-        <div class="invalid-feedback">Something is Off !?</div>
-      </div>
-
-      <div class="mb-3">
-        <label for="password" class="form-label auth-label">Password</label>
-        <input
-          name="user[password]"
-          placeholder="Create a strong Password...."
-          type="password"
-          class="form-control custom-input"
-          required
-        />
-        <div class="valid-feedback">Looks Great!</div>
-        <div class="invalid-feedback">Something is Off !?</div>
-      </div>
-
-      <div class="mb-4">
-        <label for="salary" class="form-label auth-label"
-          >Current Salary (₹)</label
-        >
-        <input
-          name="user[number]"
-          class="form-control custom-input"
-          type="number"
-          placeholder="Enter Your Salary..."
-          required
-        />
-        <div class="valid-feedback">Looks Great!</div>
-        <div class="invalid-feedback">Something is Off !?</div>
-      </div>
-
-      <button class="btn main-cta w-100">Create Account</button>
-    </form>
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row">
+    <div class="col-8 offset-2 mt-2">
+      <br />
+      <h3>Hey & Welcome Mates!</h3>
+      <form action="/signup" method="post" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input
+            name="user[name]"
+            placeholder="Enter Your FullName here...."
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            name="user[username]"
+            placeholder="Enter Your Username here...."
+            type="text"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            name="user[password]"
+            placeholder="Enter Your Password here...."
+            type="password"
+            class="form-control"
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <div class="mb-3">
+          <label for="salary" class="form-label">Salary</label>
+          <input
+            name="user[number]"
+            class="form-control"
+            type="number"
+            placeholder="Enter Your Salary..."
+            required
+          />
+          <div class="valid-feedback">Looks Great!</div>
+          <div class="invalid-feedback">Something is Off !?</div>
+        </div>
+        <br />
+        <button class="btn btn-dark add-btn">SignUp</button>
+        <br />
+      </form>
+    </div>
   </div>
-</div>
+</body>

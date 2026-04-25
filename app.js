@@ -18,11 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
-app.use((req, res, next) => {
-  res.locals.currPath = req.path;
-  next();
-});
-
 main()
   .then(() => {
     console.log(`connected server on ${url}`);
