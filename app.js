@@ -18,6 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
+app.use((req, res, next) => {
+  res.locals.currPath = req.path;
+  next();
+});
+//start
 main()
   .then(() => {
     console.log(`connected server on ${url}`);
@@ -41,10 +46,18 @@ app.get("/login", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  let { username, password } = req.params;
+  let { username, password } = req.body;
+  const user = await User.findOne({ username: username });
   if (username == User.username && password == User.password) {
-    res.send("/body/home.ejs");
+    res.redirect(`/dash`);
+  } else {
+    res.send("Invalid username or password");
   }
+});
+
+//dash
+app.get("/dash", async (req, res) => {
+  res.render("body/dash.ejs");
 });
 
 //signup
