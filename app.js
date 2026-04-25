@@ -46,10 +46,18 @@ app.get("/login", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  let { username, password } = req.params;
+  let { username, password } = req.body;
+  const user = await User.findOne({ username: username });
   if (username == User.username && password == User.password) {
-    res.send("/body/home.ejs");
+    res.redirect(`/dash`);
+  } else {
+    res.send("Invalid username or password");
   }
+});
+
+//dash
+app.get("/dash", async (req, res) => {
+  res.render("body/dash.ejs");
 });
 
 //signup
