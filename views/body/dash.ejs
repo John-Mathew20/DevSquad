@@ -1,8 +1,293 @@
-<% layout("/layouts/boilerplate.ejs") %>
-<body>
-  <%- include("../includes/dash-nav.ejs") %>
-  <div class="container">
-    <div class="msg">Welcome Back!</div>
-  </div>
-  <%- include('../includes/accord.ejs') %>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyMate | Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="dashboard-body">
+    <div class="dash-wrapper">
+      <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="/img/logo.png" alt="MoneyMate Logo" />
+        <span>MoneyMate</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/dash"><i class="fa-solid fa-border-all"></i> Dashboard</a></li>
+        <li><a href="/expenses"><i class="fa-solid fa-wallet"></i> Expenses</a></li>
+        <li><a href="#"><i class="fa-solid fa-piggy-bank"></i> Budgets</a></li>
+        <li><a href="/insights"><i class="fa-solid fa-lightbulb"></i> Insights</a></li>
+        <li><a href="/goals"><i class="fa-solid fa-bullseye"></i> Goals</a></li>
+      </ul>
+      <div class="logout-btn">
+        <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </aside>
+
+      <main class="main-content">
+        <header class="dash-header">
+          <div>
+            <p class="greeting">Welcome back, <%= user.name %>!</p>
+            <h2>Here's your financial overview</h2>
+          </div>
+          <div class="header-icons">
+            <i class="fa-regular fa-bell"></i>
+            <div class="profile-circle"><i class="fa-solid fa-user"></i></div>
+          </div>
+        </header>
+
+        <% if (user.goal && user.goal.amount > 0 && savings >= user.goal.amount) { %>
+        <div style="background: linear-gradient(135deg, #10b981, #047857); padding: 25px; border-radius: 16px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);">
+            <div>
+                <h3 style="color: #fff; margin: 0 0 10px 0; font-size: 1.8rem; display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-trophy" style="color: #fbbf24; font-size: 2.2rem;"></i> Goal Achieved!
+                </h3>
+                <p style="color: #d1fae5; margin: 0; font-size: 1.1rem;">
+                    Incredible job, <%= user.name %>! You've successfully saved <strong>₹<%= user.goal.amount %></strong> for your <strong><%= user.goal.name %></strong>. Time to celebrate! 🎉
+                </p>
+            </div>
+            <i class="fa-solid fa-medal" style="font-size: 4rem; color: #fff; opacity: 0.2;"></i>
+        </div>
+      <% } %>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <p class="stat-title">Monthly Salary</p>
+            <h3>₹<%= salary %></h3>
+            <p class="stat-subtitle">This Month</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-title">Total Expenses</p>
+            <h3>₹<%= totalExpenses %></h3>
+            <p class="stat-subtitle text-danger">
+              This Month <i class="fa-solid fa-arrow-down"></i>
+            </p>
+          </div>
+          <div class="stat-card highlight-card">
+            <p class="stat-title">Total Savings</p>
+            <h3 class="text-success">₹<%= savings %></h3>
+            <p class="stat-subtitle text-success">
+              <%= savingsPercentage %>% of salary
+              <i class="fa-solid fa-arrow-up"></i>
+            </p>
+          </div>
+        </div>
+
+        <% if (user.goal && user.goal.amount > 0 && savings >= user.goal.amount) { %>
+        <div style="background: linear-gradient(135deg, #10b981, #047857); padding: 25px; border-radius: 16px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);">
+            <div>
+                <h3 style="color: #fff; margin: 0 0 10px 0; font-size: 1.8rem; display: flex; align-items: center; gap: 12px;">
+                    <i class="fa-solid fa-trophy" style="color: #fbbf24; font-size: 2.2rem;"></i> Goal Achieved!
+                </h3>
+                <p style="color: #d1fae5; margin: 0; font-size: 1.1rem;">
+                    Incredible job, <%= user.name %>! You've successfully saved <strong>₹<%= user.goal.amount %></strong> for your <strong><%= user.goal.name %></strong>. Time to celebrate! 🎉
+                </p>
+            </div>
+            <i class="fa-solid fa-medal" style="font-size: 4rem; color: #fff; opacity: 0.2;"></i>
+        </div>
+      <% } %>
+
+      <% if (user.goal && user.goal.amount > 0 && savings < user.goal.amount) { %>
+        <% let dashProgress = savings > 0 ? ((savings / user.goal.amount) * 100) : 0; %>
+        <div style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                <h4 style="color: #f8fafc; margin: 0; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-bullseye" style="color: #a855f7;"></i> 
+                    Active Goal: <%= user.goal.name %>
+                </h4>
+                <span style="color: #94a3b8; font-weight: 500;">₹<%= savings > 0 ? savings : 0 %> / ₹<%= user.goal.amount %></span>
+            </div>
+            
+            <div style="width: 100%; background: #0f172a; border-radius: 10px; height: 12px; overflow: hidden; border: 1px solid #334155;">
+                <div style="width: <%= dashProgress %>%; background: linear-gradient(90deg, #a855f7, #3b82f6); height: 100%; border-radius: 10px; transition: width 0.5s ease;"></div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                <span style="color: #64748b; font-size: 0.85rem;">Keep saving to reach your target!</span>
+                <span style="color: #a855f7; font-weight: bold; font-size: 0.9rem;"><%= dashProgress.toFixed(1) %>%</span>
+            </div>
+        </div>
+      <% } %>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h4>Expense Overview</h4>
+            <div class="donut-container">
+              <canvas id="expenseChart"></canvas>
+              <div class="custom-legend">
+                <p>
+                  <span class="dot" style="background: #ef4444"></span> Food:
+                  ₹<%= food %>
+                </p>
+                <p>
+                  <span class="dot" style="background: #3b82f6"></span> Travel:
+                  ₹<%= travel %>
+                </p>
+                <p>
+                  <span class="dot" style="background: #f59e0b"></span> Taxes:
+                  ₹<%= taxes %>
+                </p>
+                <p>
+                  <span class="dot" style="background: #64748b"></span> Others:
+                  ₹<%= others %>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <h4>Monthly Trend</h4>
+              <select class="trend-select">
+                <option>This Month</option>
+                <option>Last 6 Months</option>
+              </select>
+            </div>
+            <div class="line-container">
+              <canvas id="trendChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div
+          style="
+            margin-top: 30px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            padding: 25px;
+            border-radius: 16px;
+          "
+        >
+          <h4 style="color: #f8fafc; margin-bottom: 15px">
+            Add New Transaction
+          </h4>
+          <form
+            action="/add-expense"
+            method="POST"
+            style="
+              display: flex;
+              gap: 15px;
+              align-items: center;
+              flex-wrap: wrap;
+            "
+          >
+            <select
+              name="category"
+              required
+              style="
+                flex: 1;
+                padding: 10px;
+                border-radius: 8px;
+                background: #0f172a;
+                color: #fff;
+                border: 1px solid #334155;
+              "
+            >
+              <option value="" disabled selected>Select Category</option>
+              <option value="food">🍔 Food & Dining</option>
+              <option value="travel">🚕 Travel & Transport</option>
+              <option value="taxes">📄 Taxes & Bills</option>
+              <option value="others">🛍️ Others</option>
+            </select>
+            <input
+              type="number"
+              name="amount"
+              placeholder="Amount (₹)"
+              required
+              style="
+                flex: 1;
+                padding: 10px;
+                border-radius: 8px;
+                background: #0f172a;
+                color: #fff;
+                border: 1px solid #334155;
+              "
+              min="1"
+            />
+            <button
+              type="submit"
+              style="
+                padding: 10px 25px;
+                background: #10b981;
+                color: #000;
+                border: none;
+                border-radius: 8px;
+                font-weight: bold;
+                cursor: pointer;
+              "
+            >
+              Add Expense
+            </button>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const foodData = Number("<%= food %>");
+      const travelData = Number("<%= travel %>");
+      const taxesData = Number("<%= taxes %>");
+      const othersData = Number("<%= others %>");
+
+      const ctxDonut = document.getElementById("expenseChart").getContext("2d");
+      new Chart(ctxDonut, {
+        type: "doughnut",
+        data: {
+          labels: ["Food", "Travel", "Taxes", "Others"],
+          datasets: [
+            {
+              data: [foodData, travelData, taxesData, othersData],
+              backgroundColor: ["#ef4444", "#3b82f6", "#f59e0b", "#64748b"],
+              borderWidth: 0,
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: { cutout: "75%", plugins: { legend: { display: false } } },
+      });
+
+      const ctxLine = document.getElementById("trendChart").getContext("2d");
+      new Chart(ctxLine, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+          datasets: [
+            {
+              label: "Expenses",
+              data: [15000, 25000, 20000, 35000, 32450],
+              borderColor: "#10b981",
+              backgroundColor: "rgba(16, 185, 129, 0.1)",
+              borderWidth: 2,
+              tension: 0.4,
+              fill: true,
+              pointBackgroundColor: "#10b981",
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: "rgba(255, 255, 255, 0.05)" },
+              ticks: { color: "#94a3b8" },
+            },
+            x: { grid: { display: false }, ticks: { color: "#94a3b8" } },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

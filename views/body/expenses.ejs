@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyMate | Manage Expenses</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style/style.css" />
+  </head>
+  <body class="dashboard-body">
+    <div class="dash-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <img src="/img/logo.png" alt="MoneyMate Logo" />
+          <span>MoneyMate</span>
+        </div>
+        <ul class="nav-links">
+          <li>
+            <a href="/dash"><i class="fa-solid fa-border-all"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="/expenses"><i class="fa-solid fa-wallet"></i> Expenses</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa-solid fa-piggy-bank"></i> Budgets</a>
+          </li>
+          <li>
+            <a href="/insights"
+              ><i class="fa-solid fa-lightbulb"></i> Insights</a
+            >
+          </li>
+          <li>
+            <a href="/goals"><i class="fa-solid fa-bullseye"></i> Goals</a>
+          </li>
+        </ul>
+        <div class="logout-btn">
+          <a href="/logout"
+            ><i class="fa-solid fa-right-from-bracket"></i> Logout</a
+          >
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="dash-header">
+          <div>
+            <p class="greeting">Control Center</p>
+            <h2>Manage & Edit Expenses</h2>
+          </div>
+          <div class="header-icons">
+            <i class="fa-regular fa-bell"></i>
+            <div class="profile-circle"><i class="fa-solid fa-user"></i></div>
+          </div>
+        </header>
+
+        <form action="/update-expenses" method="POST">
+          <div
+            style="
+              background: linear-gradient(
+                145deg,
+                #1e293b,
+                rgba(16, 185, 129, 0.05)
+              );
+              border: 1px solid #10b981;
+              border-radius: 16px;
+              padding: 25px;
+              margin-bottom: 30px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            "
+          >
+            <div>
+              <p style="color: #94a3b8; margin-bottom: 5px">
+                Edit Monthly Salary (₹)
+              </p>
+              <input
+                type="number"
+                name="salary"
+                value="<%= salary %>"
+                required
+                style="
+                  background: transparent;
+                  border: none;
+                  border-bottom: 2px solid #10b981;
+                  color: #fff;
+                  font-size: 2rem;
+                  font-weight: bold;
+                  width: 250px;
+                  outline: none;
+                "
+              />
+            </div>
+            <button
+              type="submit"
+              style="
+                background: #10b981;
+                color: #000;
+                border: none;
+                padding: 15px 30px;
+                border-radius: 8px;
+                font-weight: bold;
+                font-size: 1.1rem;
+                cursor: pointer;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+              "
+            >
+              <i class="fa-solid fa-floppy-disk"></i> Save & Update Dashboard
+            </button>
+          </div>
+
+          <h4 style="color: #f8fafc; margin-bottom: 20px">
+            Edit Category Amounts
+          </h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px">
+            <div
+              style="
+                background: #1e293b;
+                border: 1px solid #334155;
+                border-radius: 16px;
+                padding: 20px;
+              "
+            >
+              <h5 style="color: #fff; margin-bottom: 15px">
+                <i
+                  class="fa-solid fa-burger"
+                  style="color: #ef4444; margin-right: 10px"
+                ></i>
+                Food & Dining
+              </h5>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  background: #0f172a;
+                  padding: 10px 15px;
+                  border-radius: 8px;
+                  border: 1px solid #334155;
+                "
+              >
+                <span
+                  style="color: #94a3b8; margin-right: 10px; font-weight: bold"
+                  >₹</span
+                >
+                <input
+                  type="number"
+                  name="food"
+                  value="<%= food %>"
+                  style="
+                    background: transparent;
+                    border: none;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    width: 100%;
+                    outline: none;
+                  "
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div
+              style="
+                background: #1e293b;
+                border: 1px solid #334155;
+                border-radius: 16px;
+                padding: 20px;
+              "
+            >
+              <h5 style="color: #fff; margin-bottom: 15px">
+                <i
+                  class="fa-solid fa-car"
+                  style="color: #3b82f6; margin-right: 10px"
+                ></i>
+                Travel & Transport
+              </h5>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  background: #0f172a;
+                  padding: 10px 15px;
+                  border-radius: 8px;
+                  border: 1px solid #334155;
+                "
+              >
+                <span
+                  style="color: #94a3b8; margin-right: 10px; font-weight: bold"
+                  >₹</span
+                >
+                <input
+                  type="number"
+                  name="travel"
+                  value="<%= travel %>"
+                  style="
+                    background: transparent;
+                    border: none;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    width: 100%;
+                    outline: none;
+                  "
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div
+              style="
+                background: #1e293b;
+                border: 1px solid #334155;
+                border-radius: 16px;
+                padding: 20px;
+              "
+            >
+              <h5 style="color: #fff; margin-bottom: 15px">
+                <i
+                  class="fa-solid fa-file-invoice-dollar"
+                  style="color: #f59e0b; margin-right: 10px"
+                ></i>
+                Taxes & Bills
+              </h5>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  background: #0f172a;
+                  padding: 10px 15px;
+                  border-radius: 8px;
+                  border: 1px solid #334155;
+                "
+              >
+                <span
+                  style="color: #94a3b8; margin-right: 10px; font-weight: bold"
+                  >₹</span
+                >
+                <input
+                  type="number"
+                  name="taxes"
+                  value="<%= taxes %>"
+                  style="
+                    background: transparent;
+                    border: none;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    width: 100%;
+                    outline: none;
+                  "
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div
+              style="
+                background: #1e293b;
+                border: 1px solid #334155;
+                border-radius: 16px;
+                padding: 20px;
+              "
+            >
+              <h5 style="color: #fff; margin-bottom: 15px">
+                <i
+                  class="fa-solid fa-bag-shopping"
+                  style="color: #64748b; margin-right: 10px"
+                ></i>
+                Others
+              </h5>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  background: #0f172a;
+                  padding: 10px 15px;
+                  border-radius: 8px;
+                  border: 1px solid #334155;
+                "
+              >
+                <span
+                  style="color: #94a3b8; margin-right: 10px; font-weight: bold"
+                  >₹</span
+                >
+                <input
+                  type="number"
+                  name="others"
+                  value="<%= others %>"
+                  style="
+                    background: transparent;
+                    border: none;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    width: 100%;
+                    outline: none;
+                  "
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoneyMate | Insights</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style/style.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dash-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="/img/logo.png" alt="MoneyMate Logo" />
+        <span>MoneyMate</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/dash"><i class="fa-solid fa-border-all"></i> Dashboard</a></li>
+        <li><a href="/expenses"><i class="fa-solid fa-wallet"></i> Expenses</a></li>
+        <li><a href="#"><i class="fa-solid fa-piggy-bank"></i> Budgets</a></li>
+        <li><a href="/insights"><i class="fa-solid fa-lightbulb"></i> Insights</a></li>
+        <li><a href="/goals"><i class="fa-solid fa-bullseye"></i> Goals</a></li>
+      </ul>
+      <div class="logout-btn">
+        <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="dash-header">
+        <div>
+          <p class="greeting">Financial Knowledge Hub</p>
+          <h2>Expert Insights & Your Notes</h2>
+        </div>
+        <div class="header-icons">
+          <i class="fa-regular fa-bell"></i>
+          <div class="profile-circle"><i class="fa-solid fa-user"></i></div>
+        </div>
+      </header>
+
+      <h4 style="color: #f8fafc; margin-bottom: 20px;"><i class="fa-solid fa-star" style="color: #f59e0b;"></i> MoneyMate Pro Tips</h4>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px;">
+        
+        <div style="background: linear-gradient(145deg, #1e293b, rgba(16, 185, 129, 0.05)); border: 1px solid #10b981; border-radius: 16px; padding: 20px;">
+            <h5 style="color: #10b981; font-size: 1.1rem; margin-bottom: 10px;">The 50/30/20 Rule</h5>
+            <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">Allocate 50% of your income to needs, 30% to wants, and save the remaining 20%. This ensures a balanced financial life.</p>
+        </div>
+
+        <div style="background: linear-gradient(145deg, #1e293b, rgba(59, 130, 246, 0.05)); border: 1px solid #3b82f6; border-radius: 16px; padding: 20px;">
+            <h5 style="color: #3b82f6; font-size: 1.1rem; margin-bottom: 10px;">Emergency Fund</h5>
+            <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">Always aim to keep 3 to 6 months' worth of living expenses in a liquid savings account for unforeseen medical or job emergencies.</p>
+        </div>
+
+        <div style="background: linear-gradient(145deg, #1e293b, rgba(245, 158, 11, 0.05)); border: 1px solid #f59e0b; border-radius: 16px; padding: 20px;">
+            <h5 style="color: #f59e0b; font-size: 1.1rem; margin-bottom: 10px;">Debt Snowball</h5>
+            <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.5;">Pay off your smallest debts first to build momentum and motivation before tackling larger high-interest loans.</p>
+        </div>
+      </div>
+
+      <h4 style="color: #f8fafc; margin-bottom: 15px;"><i class="fa-solid fa-pen-nib" style="color: #a855f7;"></i> Add Your Personal Goal / Note</h4>
+      <form action="/add-insight" method="POST" style="display: flex; gap: 15px; margin-bottom: 30px;">
+        <input type="text" name="newInsight" placeholder="E.g., Save ₹10,000 for upcoming trip next month..." required style="flex: 1; padding: 15px; border-radius: 8px; background: #0f172a; color: #fff; border: 1px solid #334155; font-size: 1rem; outline: none;">
+        <button type="submit" style="background: #10b981; color: #000; border: none; padding: 0 30px; border-radius: 8px; font-weight: bold; cursor: pointer;"><i class="fa-solid fa-plus"></i> Add Note</button>
+      </form>
+
+      <div style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 25px;">
+        <h4 style="color: #f8fafc; margin-bottom: 20px;">Your Saved Notes</h4>
+        
+<ul style="list-style: none; padding: 0; margin: 0;">
+    <% for (let insight of (user.customInsights || [])) { %>
+        <li style="background: #0f172a; padding: 15px; border-radius: 8px; margin-bottom: 10px; color: #e2e8f0; display: flex; align-items: center;">
+            <i class="fa-solid fa-check" style="color: #10b981; margin-right: 15px;"></i> <%= insight %>
+        </li>
+    <% } %>
+</ul>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoneyMate | Financial Goals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style/style.css" />
+</head>
+<body class="dashboard-body">
+  <div class="dash-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <img src="/img/logo.png" alt="MoneyMate Logo" />
+        <span>MoneyMate</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="/dash"><i class="fa-solid fa-border-all"></i> Dashboard</a></li>
+        <li><a href="/expenses"><i class="fa-solid fa-wallet"></i> Expenses</a></li>
+        <li><a href="#"><i class="fa-solid fa-piggy-bank"></i> Budgets</a></li>
+        <li><a href="/insights"><i class="fa-solid fa-lightbulb"></i> Insights</a></li>
+        <li><a href="/goals"><i class="fa-solid fa-bullseye"></i> Goals</a></li>
+      </ul>
+      <div class="logout-btn">
+        <a href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="dash-header">
+        <div>
+          <p class="greeting">Dream Big</p>
+          <h2>Set Your Financial Goal</h2>
+        </div>
+      </header>
+
+      <% if (user.goal && user.goal.amount > 0) { %>
+        <div style="background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 30px; margin-bottom: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 15px;">
+                <div>
+                    <h3 style="color: #fff; margin: 0; font-size: 1.8rem;"><i class="fa-solid fa-rocket" style="color: #a855f7;"></i> <%= user.goal.name %></h3>
+                    <p style="color: #94a3b8; margin: 5px 0 0 0;">Target: ₹<%= user.goal.amount %></p>
+                </div>
+                <div style="text-align: right;">
+                    <h2 style="color: #10b981; margin: 0;">₹<%= currentSavings > 0 ? currentSavings : 0 %></h2>
+                    <p style="color: #94a3b8; margin: 0;">Currently Saved</p>
+                </div>
+            </div>
+            
+            <% let progress = currentSavings > 0 ? Math.min((currentSavings / user.goal.amount) * 100, 100) : 0; %>
+            <div style="width: 100%; background: #0f172a; border-radius: 15px; height: 20px; overflow: hidden; border: 1px solid #334155;">
+                <div style="width: <%= progress %>%; background: linear-gradient(90deg, #3b82f6, #10b981); height: 100%; transition: width 0.5s ease;"></div>
+            </div>
+            <p style="text-align: right; color: #f8fafc; font-weight: bold; margin-top: 10px;"><%= progress.toFixed(1) %>% Achieved</p>
+            
+            <% if (progress >= 100) { %>
+                <div style="background: rgba(16, 185, 129, 0.2); padding: 10px; border-radius: 8px; margin-top: 15px; color: #10b981; text-align: center; font-weight: bold;">
+                    🎉 Congratulations! You have reached your goal!
+                </div>
+            <% } %>
+        </div>
+      <% } %>
+
+      <div style="background: linear-gradient(145deg, #1e293b, rgba(168, 85, 247, 0.05)); border: 1px solid #a855f7; border-radius: 16px; padding: 25px;">
+        <h4 style="color: #f8fafc; margin-bottom: 20px;"><%= (user.goal && user.goal.amount > 0) ? "Update/Change Your Goal" : "Create a New Goal" %></h4>
+        <form action="/set-goal" method="POST" style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">What are you saving for?</label>
+                <input type="text" name="goalName" placeholder="E.g., Sports Bike, Laptop, Vacation..." required style="width: 100%; padding: 12px; border-radius: 8px; background: #0f172a; color: #fff; border: 1px solid #334155; outline: none;">
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+                <label style="color: #94a3b8; display: block; margin-bottom: 5px;">Target Amount (₹)</label>
+                <input type="number" name="goalAmount" placeholder="E.g., 150000" required min="1" style="width: 100%; padding: 12px; border-radius: 8px; background: #0f172a; color: #fff; border: 1px solid #334155; outline: none;">
+            </div>
+            <div style="width: 100%; margin-top: 10px;">
+                <button type="submit" style="background: #a855f7; color: #fff; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%;"><i class="fa-solid fa-flag-checkered"></i> Start Saving for this Goal</button>
+            </div>
+        </form>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
