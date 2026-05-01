@@ -11,3 +11,10 @@ Harshita Patel
 John Mathew
 
 # TeamID = UDB-W4CG
+
+-- 
+
+# Contributers
+<a href="https://github.com/John-Mathew20/DevSquad/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=John-Mathew20/DevSquad" />
+</a>
